@@ -1,3 +1,4 @@
+import 'dart:convert' as convert;
 class ProductItem {
   String? advisePrice;
   int? id;
@@ -36,7 +37,7 @@ class ProductItem {
     return ProductItem(
       advisePrice: parsedJson['advise_price'],
       id: parsedJson['id'],
-      image: parsedJson['image'],
+      image: convert.jsonDecode(parsedJson['image']).thumbnail,
       isAlone: parsedJson['is_alone'],
       name: parsedJson['name'],
       saleKey: parsedJson['sale_key'],
