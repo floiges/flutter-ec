@@ -3,6 +3,7 @@ import 'dart:convert' as convert;
 import './model/res.dart';
 import './model/product_item.dart';
 import 'api.dart';
+import './view/product_card.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _MyListPageState extends State<ListPage> {
       ),
       body: ListView.builder(
         itemCount: products.length,
-        itemBuilder: (BuildContext context, int index) =>
+        itemBuilder: (BuildContext context, int index) => ProductCard(item: products[index])
       ),
     );
   }
