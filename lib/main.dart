@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import './list.dart';
 
 void main() {
@@ -47,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  static const platform = const MethodChannel('samples.flutter.dev/battery');
   int _counter = 0;
 
   void _incrementCounter() {
@@ -58,6 +60,18 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    _getBatteryLevel();
+  }
+
+  Future<void> _getBatteryLevel() async {
+    String batteryLevel;
+    try {
+      final int result = await platform.invokeMethod('getBatteryLevel');
+      batteryLevel = 'Battery level at $result % .';
+    } on PlatformException catch(e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    }
+    print('current batteryLevel: $batteryLevel');
   }
 
   @override
@@ -128,7 +142,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage()))
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => ListPage()))
+          _incrementCounter()
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),

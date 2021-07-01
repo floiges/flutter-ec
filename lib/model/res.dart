@@ -1,13 +1,13 @@
 class Res {
   bool flag = true;
-  String? msg;
-  int? code;
+  String msg;
+  int code;
   dynamic data;
 
   Res({
     this.flag = true,
-    this.msg,
-    this.code,
+    this.msg = 'success',
+    this.code = 200,
     this.data
   });
 

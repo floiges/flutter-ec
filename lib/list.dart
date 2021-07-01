@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:convert' as convert;
 import './model/res.dart';
 import './model/product_item.dart';
-import 'api.dart';
 import './view/product_card.dart';
+import './utils/api.dart';
 
 class ListPage extends StatefulWidget {
   ListPage({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class ListPage extends StatefulWidget {
 }
 
 class _MyListPageState extends State<ListPage> {
-  late List<ProductItem> products;
+  List<ProductItem> products = [];
 
   @override
   void initState() {
@@ -53,6 +52,8 @@ class _MyListPageState extends State<ListPage> {
     res.data['products'].forEach((it) {
       items.add(ProductItem.fromJson(it));
     });
-    products = items;
+    setState(() {
+      products = items;
+    });
   }
 }

@@ -1,6 +1,6 @@
 import 'dart:convert' as convert;
 import 'package:http/http.dart' as http;
-import './model/res.dart';
+import '../model/res.dart';
 
 var client = http.Client();
 
@@ -16,7 +16,6 @@ const headers = {
 
 Future<Res> fetchProducts() async {
   try {
-    print('xxx');
     var requestUrl = Uri(
         scheme: 'http',
         host: host,
